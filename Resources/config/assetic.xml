@@ -26,16 +26,17 @@
 
     <services>
         <!-- managers -->
-        <service id="assetic.filter_manager" class="%assetic.filter_manager.class%" public="true">
+        <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager" public="true">
             <argument type="service" id="service_container" />
             <argument type="collection"></argument>
         </service>
-        <service id="assetic.asset_manager" class="%assetic.asset_manager.class%">
+
+        <service id="assetic.asset_manager" class="Assetic\Factory\LazyAssetManager" public="true">
             <argument type="service" id="assetic.asset_factory" />
             <argument type="collection"></argument>
         </service>
 
-        <service id="assetic.asset_factory" class="%assetic.asset_factory.class%" public="false">
+        <service id="assetic.asset_factory" class="Symfony\Bundle\AsseticBundle\Factory\AssetFactory" public="false">
             <argument type="service" id="kernel" />
             <argument type="service" id="service_container" />
             <argument type="service" id="assetic.parameter_bag" />
@@ -74,5 +75,27 @@
         </service>
 
         <service id="assetic.value_supplier" alias="assetic.value_supplier.default" public="false" />
+
+        <service id="Symfony\Bundle\AsseticBundle\Command\AbstractCommand" abstract="true">
+            <argument type="service" id="assetic.asset_manager"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service
+                id="Symfony\Bundle\AsseticBundle\Command\DumpCommand"
+                parent="Symfony\Bundle\AsseticBundle\Command\AbstractCommand"
+                public="false"
+        >
+            <tag name="console.command" />
+        </service>
+        <service
+                id="Symfony\Bundle\AsseticBundle\Command\WatchCommand"
+                parent="Symfony\Bundle\AsseticBundle\Command\AbstractCommand"
+                public="false"
+        >
+            <tag name="console.command" />
+        </service>
     </services>
 </container>

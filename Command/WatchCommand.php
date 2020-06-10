@@ -84,6 +84,8 @@ class WatchCommand extends AbstractCommand
             clearstatcache ();
             sleep($input->getOption('period'));
         }
+
+        return 0;
     }
 
     /**
@@ -101,7 +103,7 @@ class WatchCommand extends AbstractCommand
 
         $combinations = VarUtils::getCombinations(
             $asset->getVars(),
-            $this->getContainer()->getParameter('assetic.variables')
+            $this->container->getParameter('assetic.variables')
         );
 
         $mtime = 0;
