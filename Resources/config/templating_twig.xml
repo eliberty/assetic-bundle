@@ -20,18 +20,5 @@
             <argument>%assetic.bundles%</argument>
             <argument type="service" id="assetic.value_supplier" on-invalid="null" />
         </service>
-        <service id="assetic.twig_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
-            <tag name="assetic.formula_loader" alias="twig" />
-            <tag name="assetic.templating.twig" />
-            <argument type="service" id="assetic.twig_formula_loader.real" />
-            <argument type="service" id="assetic.config_cache" />
-            <argument>%kernel.debug%</argument>
-        </service>
-        <service id="assetic.twig_formula_loader.real" class="%assetic.twig_formula_loader.class%" public="false">
-            <tag name="assetic.templating.twig" />
-            <tag name="monolog.logger" channel="assetic" />
-            <argument type="service" id="twig" />
-            <argument type="service" id="logger" on-invalid="ignore" />
-        </service>
     </services>
 </container>
