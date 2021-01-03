@@ -11,7 +11,7 @@
 
 namespace Symfony\Bundle\AsseticBundle\Factory\Resource;
 
-use Assetic\Factory\Resource\ResourceInterface;
+use Assetic\Contracts\Factory\Resource\ResourceInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\Templating\Loader\LoaderInterface;
 

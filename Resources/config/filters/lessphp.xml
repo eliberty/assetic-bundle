@@ -22,7 +22,6 @@
             <call method="setPresets"><argument>%assetic.filter.lessphp.presets%</argument></call>
             <call method="setLoadPaths"><argument>%assetic.filter.lessphp.paths%</argument></call>
             <call method="setFormatter"><argument>%assetic.filter.lessphp.formatter%</argument></call>
-            <call method="setPreserveComments"><argument>%assetic.filter.lessphp.preserve_comments%</argument></call>
         </service>
     </services>
 </container>
